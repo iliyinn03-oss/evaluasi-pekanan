@@ -138,6 +138,6 @@ console.log("catatanKasir:", catatanKasir);
      menu adalah kumpulan banyak item sejenis yang berurutan, jadi cocok
      diakses lewat indeks dan bisa diulang (loop). kedai adalah satu entitas
      dengan banyak sifat berbeda (nama, kota, jam buka, dll.), jadi lebih
-     jelas diakses lewat nama properti.
+     jelas diakses lewat nama properti..
 */
 
