@@ -303,4 +303,57 @@ const subtotalBaruTrx1 =
 console.log("Subtotal transaksi 1 jika dihitung ulang:", subtotalBaruTrx1);
 menu[0].harga = 25000; // kembalikan ke harga semula
  
-
+/*
+ ===== JAWABAN (Perhitungan dan Laporan) =====
+ 
+  1. Perhitungan manual transaksi 1 (TRX-001, Budi, member):
+     - Subtotal    = (3 x 25.000) + (2 x 5.000) = 75.000 + 10.000 = 85.000
+     - Potongan    = 10% x 85.000 = 8.500
+     - Setelah potong = 85.000 - 8.500 = 76.500
+     - Pajak       = 11% x 76.500 = 8.415
+     - Total bayar = 76.500 + 8.415 = 84.915
+     - Kembalian   = 175.000 - 84.915 = 90.085
+     Hasil program juga 90.085 (total bayar 84.915), jadi sama.
+     Sisa: 90.085 % 50.000 = 40.085, lalu 40.085 % 20.000 = 85.
+ 
+  2. Transaksi 1: subtotal 85.000 (kurang dari 100.000), jumlah item 5.
+     - Dengan ||  : false || true  -> true  (gratis antar)
+     - Dengan &&  : false && true  -> false (tidak gratis antar)
+     || bernilai true jika salah satu syarat terpenuhi (cukup jumlah item 5).
+     && baru true jika kedua syarat terpenuhi, padahal subtotal belum
+     mencapai 100.000, jadi hasilnya false.
+ 
+  3. Perhitungan pajak transaksi 1:
+     - Dengan kurung   : (subtotal - potongan) * 11 / 100
+                         = (85.000 - 8.500) * 11 / 100 = 8.415
+     - Tanpa kurung    : subtotal - potongan * 11 / 100
+                         = 85.000 - (8.500 * 11 / 100) = 85.000 - 935 = 84.065
+     Tanpa kurung, perkalian dan pembagian dikerjakan lebih dulu dari
+     pengurangan, sehingga yang dikenai pajak hanya potongan, bukan
+     (subtotal - potongan).
+ 
+  4. const (nilainya tidak diganti setelah dibuat):
+     - kedai          : referensi ke object kedai tidak berganti.
+     - subtotalTrx1   : hasil hitung sekali, tidak diubah lagi.
+     - totalBayarTrx1 : sama, nilai akhir transaksi.
+     let (nilainya diubah setelah dibuat):
+     - pendapatanHarian : bertambah dengan += tiap transaksi.
+     - jumlahTransaksi  : bertambah dengan ++ tiap transaksi.
+     - sisaKembalianTrx1: mula-mula sisa setelah 50.000, lalu diubah
+                          dengan %= 20000 menjadi sisa setelah 20.000.
+ 
+  5. harga * 1.05 * 3 salah karena hanya mengalikan harga dengan 1,05 lalu
+     dengan 3, artinya harga menjadi 3 kali lipat (naik 215%), bukan naik
+     5% tiga kali berturut-turut. Naik 5% per bulan itu bunga berbunga
+     (setiap bulan basisnya sudah harga bulan sebelumnya).
+     - 1.05 ** 3 = 1,05 x 1,05 x 1,05 = 1,157625 (naik sekitar 15,76%)
+     - 1.05 * 3  = 3,15 (sama saja dengan naik 215%)
+     Jadi harga setelah 3 bulan: 25.000 * 1,157625 = 28.940,625 (dibulatkan
+     Rp 28.941).
+ 
+  6. Tidak. Variabel seperti totalBayarTrx1 menyimpan hasil hitungan saat
+     baris itu dijalankan (sebuah angka), bukan rumusnya. Pada kode bukti di
+     atas, setelah menu[0].harga diubah menjadi 30.000, totalBayarTrx1 tetap
+     84.915. Nilainya baru berubah jika perhitungannya dijalankan lagi
+     (seperti subtotalBaruTrx1 yang memakai harga baru).
+*/
