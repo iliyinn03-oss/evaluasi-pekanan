@@ -63,3 +63,50 @@ console.log(typeof [] === typeof {});
 console.log([10, 20, 30][1] + [10, 20, 30][2]);
 // Hasil asli: 50  (sama dengan tebakan)
  
+
+/*=========================================================================
+BAGIAN 5.2
+=========================================================================*/
+
+ 
+// ============================================================
+// BUKTI: var vs let
+// (di bagian ini var sengaja dipakai untuk perbandingan)
+// ============================================================
+ 
+// ----- 1. Jangkauan (scope) di dalam blok { } -----
+{
+  var angkaVar = 10;
+  let angkaLet = 20;
+  console.log("Di dalam blok:", angkaVar, angkaLet);
+}
+ 
+// var bocor ke luar blok, jadi masih bisa dibaca.
+console.log("var di luar blok:", angkaVar);
+// Hasil asli: var di luar blok: 10
+ 
+// let hanya hidup di dalam blok. Jika baris ini diaktifkan, program berhenti:
+// console.log("let di luar blok:", angkaLet);
+// Pesan error: ReferenceError: angkaLet is not defined
+ 
+// Cara aman memeriksanya tanpa menghentikan program:
+console.log("typeof angkaLet di luar blok:", typeof angkaLet);
+// Hasil asli: typeof angkaLet di luar blok: undefined
+ 
+// ----- 2. Deklarasi ulang dengan nama sama -----
+var namaMenu = "Nasi Gudeg";
+var namaMenu = "Soto Ayam"; // tidak error, nilai lama ditimpa
+console.log("var dideklarasikan dua kali:", namaMenu);
+// Hasil asli: var dideklarasikan dua kali: Soto Ayam
+ 
+let namaMinuman = "Es Teh Manis";
+// Jika baris di bawah diaktifkan, program TIDAK berjalan sama sekali
+// (error terdeteksi sebelum satu baris pun dijalankan):
+// let namaMinuman = "Wedang Jahe";
+// Pesan error: SyntaxError: Identifier 'namaMinuman' has already been declared
+ 
+// Mengganti nilai let tetap boleh, asal tanpa kata let lagi:
+namaMinuman = "Wedang Jahe";
+console.log("let diganti nilainya:", namaMinuman);
+// Hasil asli: let diganti nilainya: Wedang Jahe
+
